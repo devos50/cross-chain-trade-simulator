@@ -9,6 +9,7 @@ class PriceHistory:
     def initialize(price_file_path: str) -> None:
         if not os.path.exists(price_file_path):
             print("Pricing information not available!")
+            return
 
         with open(price_file_path) as price_file:
             parsed_header = False
