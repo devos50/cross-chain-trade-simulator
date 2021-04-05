@@ -1,7 +1,7 @@
 import os
 import random
 
-from core import WITNESSES_PER_PARTY
+from core import WITNESSES_PER_PARTY, COLLUSION_RATE
 from core.graph import TradeGraph
 from core.trade import Trade, TradeStatus
 from core.traders_manager import TradersManager
@@ -32,6 +32,13 @@ class Scenario:
                 trade = Trade.from_scenario_line(line)
                 self.trades.append(trade)
                 self.trade_graph.add_trade(trade)
+
+        # Add some collusions between traders
+        num_colluders = int(len(TradersManager.traders) * COLLUSION_RATE)
+        colluders = random.sample(TradersManager.traders, num_colluders)
+        for colluder in colluders:
+            for other_colluder in colluders:
+                TradersManager.add_collusion(colluder, other_colluder)
 
         # Execute all trades
         for trade in self.trades:

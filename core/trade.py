@@ -50,6 +50,11 @@ class Trade:
             self.status = TradeStatus.COMPLETED
             return
 
+        # If both traders are colluding, the trade always completes
+        if TradersManager.are_colluding(self.trader_a, self.trader_b):
+            self.status = TradeStatus.COMPLETED
+            return
+
         num_sig_tx_a = 0
         num_sig_tx_b = 0
 
