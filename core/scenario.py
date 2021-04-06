@@ -49,6 +49,9 @@ class Scenario:
             trade.execute()
 
             processed_trades += 1
+            if processed_trades % 10000 == 0:
+                print("Processed %d trades..." % processed_trades)
+
             if trade.status == TradeStatus.ONE_TX_COMPLETED:
                 malicious_trades += 1
 
