@@ -64,7 +64,7 @@ class Trade:
             if not TradersManager.are_colluding(witness, self.trader_b) and not witness.offline:
                 num_sig_tx_b += 1
 
-        sigs_required = (len(self.witnesses_a) + len(self.witnesses_b)) // 2 + 1
+        sigs_required = 1 # (len(self.witnesses_a) + len(self.witnesses_b)) // 2 + 1
         if num_sig_tx_a >= sigs_required and num_sig_tx_b >= sigs_required:
             self.status = TradeStatus.COMPLETED
         elif num_sig_tx_a < sigs_required or num_sig_tx_b < sigs_required:

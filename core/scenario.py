@@ -40,6 +40,8 @@ class Scenario:
             for other_colluder in colluders:
                 TradersManager.add_collusion(colluder, other_colluder)
 
+        print("Number of traders: %d" % len(TradersManager.traders))
+
         # Execute all trades
         for trade in self.trades:
             # Execute the trade - select witnesses
